@@ -1,0 +1,78 @@
+RUN_NAME: Objaverse
+DATA:
+  PIXEL_MEAN: [0.485, 0.456, 0.406]
+  PIXEL_STD:  [0.229, 0.224, 0.225]
+
+  BG: True
+  OBJ_SIZE: 224
+  VIEW_THR: 90
+  SIZE_THR: 25
+  ACC_THR: 30
+  NUM_ROTA: 3000
+  UNSEEN_NUM: 128
+  JITTER: False
+  NOISE_LEVEL: 0.0
+  STEPS: 500
+
+NETWORK:
+  MASK: "both"
+  LOSS: "both"
+
+TRAIN:
+  RELOAD_GAP: 1
+  SAMPLE_RATE: 1.0
+  SAMPLE_NUM: 400000
+  DROP: 0.1
+  BS: 12
+  WORKERS: 16
+  VAL_GAP: 1
+  MAX_EPOCH: 25
+  LR: 1e-4
+  STEP_SIZE: 200
+  MASK: True
+  MASK_RATIO: 0.25
+  BG_RATIO: 0.5
+  ROTA_RATIO: 0.5
+  CO3D_STEP: 1000
+
+  RUNNING_DEVICE: "cuda"
+
+OBJAVERSE:
+  # DATA_PATH: './datasets/common/Objaverse/'
+  # COCO_IMAGE_ROOT: './datasets/common/Gen6D/data/coco/train2017'
+  # COCO_PATH_FILE: './datasets/dataset_chzhao/coco/img_path.pkl'
+  DATA_PATH: '/scratch/cvlab/datasets/common/Objaverse/'
+  COCO_IMAGE_ROOT: '/scratch/cvlab/datasets/common/Gen6D/data/coco/train2017'
+  COCO_PATH_FILE: '/scratch/cvlab/datasets/dataset_chzhao/coco/img_path.pkl'
+
+LINEMOD:
+  # META_DIR: './datasets/dataset_chzhao/bop_pose_data'
+  # BBOX_FILE: './datasets/dataset_chzhao/bop_pose_data/linemod_bbox.json'
+  META_DIR: '/scratch/cvlab/datasets/dataset_chzhao/bop_pose_data'
+  BBOX_FILE: '/scratch/cvlab/datasets/dataset_chzhao/bop_pose_data/linemod_bbox.json'
+
+  APE: 1
+  BENCHVISE: 2
+  CAM: 4
+  CAN: 5
+  CAT: 6
+  DRILLER: 8
+  DUCK: 9
+  EGGBOX: 10
+  GLUE: 11
+  HOLEPUNCHER: 12
+  IRON: 13
+  LAMP: 14
+  PHONE: 15
+  SYMMETRIC_OBJ: {"000010": ['Z', 180], "000011": ['Z', 180]}
+  MOD: 180.
+  INTERNAL_K: [572.4114, 0, 325.2611, 0, 573.57043, 242.04899, 0, 0, 1]
+  WIDTH: 640
+  HEIGHT: 480
+  OCC: False
+
+CO3D:
+  # CO3D_DIR: "./datasets/common/co3d/data"
+  # CO3D_ANNOTATION_DIR: "./datasets/common/co3d/preprocessed"
+  CO3D_DIR: "/scratch/cvlab/datasets/common/co3d/data"
+  CO3D_ANNOTATION_DIR: "/scratch/cvlab/datasets/common/co3d/preprocessed"
